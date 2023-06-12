@@ -1,7 +1,7 @@
 const data = require("./fakeData");
 const fs = require("fs/promises")
 
-async function insertNewUser(req, res) {
+function insertNewUser(req, res) {
     const { name, job } = req.body;
     const lastId = data[data.length - 1].id;
     

@@ -1,15 +1,20 @@
-var data =  require("./fakeData");
+const data =  require("./fakeData");
 
-module.exports = function(req, res) {
-  
-    var name =  req.query.name;
+function deleteUser(req, res) {
+    try {
+        const { name } =  req.query;
 
-    for(let i = 0; i < data.length;  i++) {
-        if(i.name == name) {
-            data[i] = null;
-        }
+        const isNameRegistered = data.find((item) => item.name === name);
+        if (!isNameRegistered) throw new Error('Name not found')
+
+        data.filter((item) => item.name !== name);
+
+        return res.status(200).json({ message: "User deleted with sucess" });
+    } catch (error) {
+        return res.status(400).json({ message: error.message });
     }
-
-    res.send("success");
-
 };
+
+module.exports = {
+    deleteUser,
+}

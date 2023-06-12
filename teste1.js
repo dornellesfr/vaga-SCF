@@ -17,6 +17,7 @@ const getUsers = ( _req, res, _next ) => {
     try {
         const result = data;
         if (!data) throw new Error('Users not found');
+
         return res.status(200).json(result);
     } catch (error) {
         return res.status(404).json({ message: error.message });
