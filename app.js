@@ -5,7 +5,7 @@ const app = express();
 const { getUser, getUsers } = require("./teste1");
 const { insertNewUser } = require("./teste2");
 const { deleteUser } = require("./teste3");
-const teste4 = require("./teste4");
+const { updateUser } = require("./teste4");
 const teste5 = require("./teste5");
 
 const { validateCreateUser } = require("./middlewares/validateCreateUser");
@@ -31,9 +31,9 @@ app.get('/', function(req, res){
 
 app.get("/user", getUser);
 app.get("/users", getUsers);
-app.post("/users", validateCreateUser, insertNewUser)
-app.delete("/users", deleteUser)
-app.put("/users", teste4)
+app.post("/users", validateCreateUser, insertNewUser);
+app.delete("/users", deleteUser);
+app.put("/users", updateUser);
 app.get("/users/access", teste5);
 
 
