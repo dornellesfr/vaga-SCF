@@ -1,4 +1,4 @@
-const data =  require("./fakeData");
+const data = require("./fakeData");
 
 function deleteUser(req, res) {
     try {
@@ -8,7 +8,7 @@ function deleteUser(req, res) {
         if (!isNameRegistered) throw new Error('Name not found')
 
         data.filter((item) => item.name !== name);
-
+        
         return res.status(200).json({ message: "User deleted with sucess" });
     } catch (error) {
         return res.status(400).json({ message: error.message });

@@ -4,6 +4,7 @@ function updateUser(req, res) {
     try {
         const { id, job, name } =  req.query;
         const user = data.find((u) => u.id === id);
+
         user.job = job;
         user.name = name;
 

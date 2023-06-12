@@ -9,6 +9,7 @@ const { updateUser } = require("./teste4");
 const { counter } = require("./teste5");
 
 const { validateCreateUser } = require("./middlewares/validateCreateUser");
+const { validateAdmin } = require("./middlewares/validateAdmin");
 
 app.set('view engine', 'jade');
 
@@ -32,8 +33,8 @@ app.get('/', function(req, res){
 app.get("/user", getUser);
 app.get("/users", getUsers);
 app.post("/users", validateCreateUser, insertNewUser);
-app.delete("/users", deleteUser);
-app.put("/users", updateUser);
+app.delete("/users", validateAdmin, deleteUser);
+app.put("/users", validateAdmin, updateUser);
 app.get("/users/access", counter);
 
 
