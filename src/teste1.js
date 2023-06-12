@@ -1,11 +1,12 @@
 const data =  require("./fakeData");
 
-const getUser = ( req, res, _next ) => {
+const getUser = ( req, res ) => {
     const { name } =  req.query;
-
     try {
-        const result = data.filter((user) => user.name === name);
-        if (result.length < 1) throw new Error('Name not found');
+        const result = data.find((user) => user.name === name);
+        result.counter += 1;
+
+        if (!result) throw new Error('Name not found');
 
         return res.status(200).json(result);
     } catch (error) {
@@ -13,7 +14,7 @@ const getUser = ( req, res, _next ) => {
     }
 };
 
-const getUsers = ( _req, res, _next ) => {
+const getUsers = ( _req, res ) => {
     try {
         const result = data;
         if (!data) throw new Error('Users not found');
